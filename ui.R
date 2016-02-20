@@ -7,7 +7,7 @@ dashboardPage(
   
   dashboardSidebar(
     includeCSS("custom.css"),
-    
+    includeMarkdown("about.md"),
     uiOutput("a"),
     
     
