@@ -61,7 +61,9 @@ dashboardPage(
   
   
   dashboardBody(tabItems(
-    tabItem("individual"),
+    tabItem("individual",
+            DT::dataTableOutput("indTable")
+            ),
     
     tabItem("latest"),
     

@@ -20,5 +20,6 @@ library(rvest)
 myFaves <- read_csv("data/authors.csv") %>% 
          arrange(Author)
 
-authors <- myFaves$Author
+authors <- myFaves$url
+names(authors) <- myFaves$Author
 

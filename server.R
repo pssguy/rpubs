@@ -8,7 +8,7 @@ shinyServer(function(input, output, session) {
       )
     }
   })
-#source("code/favesData.R", local = TRUE)
+source("code/individual.R", local = TRUE)
   
   
 })
