@@ -17,7 +17,8 @@ dashboardPage(
       id = "sbMenu",
       
       menuItem("Individual", tabName = "individual"),
-      menuItem("Latest", tabName = "latest", selected =T),
+      menuItem("Group", tabName = "latest"),
+      menuItem("Self Input", tabName = "input", selected =T),
       
       
       tags$hr(),
@@ -70,6 +71,13 @@ dashboardPage(
             DT::dataTableOutput("allTable")),
             box(width=6, footer= "Pan and Zoom as required. Hover for detailed info. Click on Legend to display and hide authors",
                plotlyOutput("allTimeline"))
+            ),
+     tabItem("input",
+                    box(width=6,
+                        DT::dataTableOutput("selectTable")),
+                    box(width=6, footer= "Pan and Zoom as required. Hover for detailed info. Click on Legend to display and hide authors",
+                        plotlyOutput("selectTimeline"))
+     
     ),
     
     tabItem("info", includeMarkdown("about.md"))
