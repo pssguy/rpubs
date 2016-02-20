@@ -54,7 +54,7 @@ if (i!=1) {
 
 })
 
-print(glimpse(all))
+#print(glimpse(all))
 
 info=list(all=all)
 
@@ -70,5 +70,31 @@ output$allTable <- DT:: renderDataTable({
                rownames=FALSE,
                escape=FALSE,
                options= list(paging = TRUE, searching = TRUE,info=FALSE))
+  
+})
+
+output$allTimeline <- renderPlotly({
+  
+  
+  df <- allData()$all %>% 
+    mutate(reps=1) 
+  
+  print(glimpse(df))
+  
+  plot_ly(df ,
+          x=date,
+          y=reps,
+          type="bar",
+          group=author,
+          showlegend = TRUE,
+          hoverinfo="text",
+          text=paste(author,"<br>",date,"<br>",title)) %>% 
+    
+    layout(hovermode = "closest", barmode="stack",
+           xaxis=list(title=" "),
+           yaxis=list(title="Publications By Day"),
+           title="Timeline of Publications by Selected Authors",
+           titlefont=list(size=16)
+    ) 
   
 })

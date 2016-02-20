@@ -9,7 +9,7 @@ library(rvest)
 # library(tidyr)
 # library(DT)
  library(readr)
-# library(plotly)
+library(plotly)
 # 
 # 
 # library(purrr)

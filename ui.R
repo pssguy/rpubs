@@ -66,7 +66,10 @@ dashboardPage(
             ),
     
     tabItem("latest",
-            DT::dataTableOutput("allTable")
+            box(width=6,
+            DT::dataTableOutput("allTable")),
+            box(width=6, footer= "Pan and Zoom as required. Hover for detailed info. Click on Legend to display and hide authors",
+               plotlyOutput("allTimeline"))
     ),
     
     tabItem("info", includeMarkdown("about.md"))
