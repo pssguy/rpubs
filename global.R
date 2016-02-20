@@ -20,6 +20,13 @@ library(rvest)
 myFaves <- read_csv("data/authors.csv") %>% 
          arrange(Author)
 
+RStudio <- myFaves %>% 
+  filter(RStudio=="Y")
+
 authors <- myFaves$url
 names(authors) <- myFaves$Author
 
+
+
+rs <- RStudio$url
+names(rs) <- RStudio$Author

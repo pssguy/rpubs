@@ -17,7 +17,7 @@ dashboardPage(
       id = "sbMenu",
       
       menuItem("Individual", tabName = "individual"),
-      menuItem("Latest", tabName = "latest"),
+      menuItem("Latest", tabName = "latest", selected =T),
       
       
       tags$hr(),
@@ -65,7 +65,9 @@ dashboardPage(
             DT::dataTableOutput("indTable")
             ),
     
-    tabItem("latest"),
+    tabItem("latest",
+            DT::dataTableOutput("allTable")
+    ),
     
     tabItem("info", includeMarkdown("about.md"))
     
