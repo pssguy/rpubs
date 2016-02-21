@@ -2,7 +2,7 @@
 
 
 
-allData <- reactive({
+allData <- eventReactive(input$getGroup,{
   
   req(input$allAuthors)
   
@@ -10,21 +10,21 @@ allData <- reactive({
 
   for(i in 1:length(authors)) ({
 page <- read_html(input$allAuthors[i])
-#page <- read_html("https://rpubs.com/walkerke/")
+
 
 authorName <- myFaves[myFaves$url==input$allAuthors[i],]$Author
 
 gravatar<- page %>% 
   html_nodes(".gravatar") %>% 
-  html_attr("src") #"http://www.gravatar.com/avatar/5cf92204cc3691d9a5155632012d8644?s=64"
+  html_attr("src") 
 
 mainpage <-page %>% 
   html_nodes(".userblock a") %>% 
-  html_attr("href")  #"http://www.rpubs.com/ramnathv"
+  html_attr("href")  
 
 number <-page %>% 
   html_nodes(".pubthumb") %>% 
-  length() #12
+  length() 
 
 link <- page %>% 
   html_nodes(".pubinfo a") %>% 
@@ -79,7 +79,7 @@ output$allTimeline <- renderPlotly({
   df <- allData()$all %>% 
     mutate(reps=1) 
   
-  print(glimpse(df))
+ 
   
   plot_ly(df ,
           x=date,

@@ -8,7 +8,8 @@ shinyServer(function(input, output, session) {
       )
     } else if (input$sbMenu=="latest") { # has to be at menuSubItem if it exists
       inputPanel(
-        selectInput("allAuthors", "Add or Delete",authors, multiple = TRUE,selected=rs)
+        selectInput("allAuthors", "Add or Delete",authors, multiple = TRUE,selected=rs),
+      actionButton("getGroup","Go")
       )
     } else if (input$sbMenu=="input") {
       inputPanel(

@@ -6,48 +6,44 @@ chosenData <- eventReactive(input$getArticles,{
   
   req(input$chosen)
   
-  print(input$chosen)
+
   
   selAuthors <- str_split(input$chosen,",")[[1]] %>% 
     str_trim()
-  print(selAuthors)
-  print(str(selAuthors))
+ 
 
   for(i in 1:length(selAuthors)) ({
     
     u <- paste0("https://rpubs.com/",selAuthors[i],"/")
 page <- read_html(u)
-#page <- read_html("https://rpubs.com/walkerke/")
 
-#authorName <- myFaves[myFaves$url==input$allAuthors[i],]$Author
 
 gravatar<- page %>% 
   html_nodes(".gravatar") %>% 
-  html_attr("src") #"http://www.gravatar.com/avatar/5cf92204cc3691d9a5155632012d8644?s=64"
-
+  html_attr("src") 
 mainpage <-page %>% 
   html_nodes(".userblock a") %>% 
-  html_attr("href")  #"http://www.rpubs.com/ramnathv"
+  html_attr("href")  
 
 number <-page %>% 
   html_nodes(".pubthumb") %>% 
-  length() #12
+  length() 
 
 link <- page %>% 
   html_nodes(".pubinfo a") %>% 
   html_attr("href") 
-print(link)
+
 
 title <- page %>% 
   html_nodes(".pubinfo a") %>% 
   html_text() 
-print(title)
+
 
 date <-page %>% 
   html_nodes(".pubinfo time") %>% 
   html_attr("datetime") %>% 
   as.Date()
-print(date)
+
 
 thumbnail <-page %>% 
   html_nodes(".pubthumb") %>% 
@@ -56,7 +52,7 @@ thumbnail <-page %>%
 authorName  <- page %>% 
   html_nodes("h3") %>% 
   html_text() 
-print(authorName)
+
 
 df <- data.frame(date=date,link=link,title=title, stringsAsFactors = FALSE)
 df$author <- authorName
@@ -68,9 +64,6 @@ if (i!=1) {
 }
 
 })
-
-print(glimpse(all))
-print("glimpse(all)")
 
 info=list(all=all)
 
@@ -95,7 +88,7 @@ output$selectTimeline <- renderPlotly({
   df <- chosenData()$all %>% 
     mutate(reps=1) 
   
- # print(glimpse(df))
+
   
   plot_ly(df ,
           x=date,

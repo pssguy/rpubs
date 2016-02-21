@@ -16,9 +16,9 @@ dashboardPage(
     sidebarMenu(
       id = "sbMenu",
       
-      menuItem("Individual", tabName = "individual"),
       menuItem("Group", tabName = "latest"),
-      menuItem("Self Input", tabName = "input", selected =T),
+      menuItem("Individual", tabName = "individual"),
+      menuItem("Self Input", tabName = "input"),
       
       
       tags$hr(),
